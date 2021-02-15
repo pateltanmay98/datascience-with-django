@@ -1,3 +1,44 @@
-{% extends 'base.html %}
-{% block title %} Home {% endblock title %}
-{% block content %}{% endblock content %}
+{% extends 'base.html' %}
+{% block title %} Performance {% endblock title %}
+{% block content %}
+{{ df | safe }}
+
+<div>
+
+    {% if error_message %}
+        {{ error_message }}
+    {% endif %}
+
+    {% if request.POST %}
+        {% if graph %}
+            <img src="data:image/png;base64, {{ graph | safe }}">
+        {% endif %}
+    {% endif %}
+
+    <form action="" class="ui form" method="POST">
+        {% csrf_token %}
+        <div class="field">
+            <label>Choose chart type: </label>
+            <select class="ui dropdown" id="select" name="sales">
+                <option value="bar">Bar plot</option>
+                <option value="line">Line plot</option>
+                <option value="count">Count plot</option>
+            </select>
+        </div>
+        <div class="field">
+            <div class="two fields">
+                <div class="field">
+                    <label>Data From</label>
+                    <input name="date_from" placeholder="Data from" type="date">
+                </div>
+                <div class="field">
+                    <label>Data To</label>
+                    <input name="date_to" placeholder="Data to" type="date">
+                </div>
+            </div>
+        </div>
+        <button class="ui primary button" type="submit">Select</button>
+    </form>
+</div>
+<h3 align="right"> Created by, Tanmay H Patel </h3>
+{% endblock content %}

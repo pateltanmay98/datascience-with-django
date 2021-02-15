@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 
 
 # Create your models here.
@@ -18,7 +19,7 @@ class Purchase(models.Model):
     quantity = models.PositiveIntegerField()
     total_price = models.PositiveIntegerField(blank=True)
     salesman = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return "Solled {} - {} for {}".format(self.product.name, self.quantity, self.price)
