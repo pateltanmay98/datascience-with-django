@@ -1,0 +1,27 @@
+.mymodal {
+    height: 300px !important;
+    width: 400px !important;
+    top: 200px !important;
+    font-size: 20px !important;
+}
+
+ul li {
+    margin: 0 0 30px 0 !important;
+}
+
+.ui.button{
+    width: 200px !important;
+    border-radius: 2px !important;
+}
+
+.block-center{
+    text-align:center !important;
+}
+
+.field-with{
+    width: 60%;
+}
+
+.mtop{
+    margin-top: 10px !important;
+}
