@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %} Add Purchase {% endblock title %}
+{% block content %}
+
+{% if added_message %}
+<div class="ui success message">
+    <i class="close icon"></i>
+    <div class="header">
+        {{ added_message }}
+    </div>
+</div>
+{% endif %}
+
+<form action="" class="ui form" method="POST">
+    {% csrf_token %}
+    {{ form }}<br><br>
+    <button class="ui positive button mtop" type="submit">Add sales data</button>
+</form>
+
+{% endblock content %}

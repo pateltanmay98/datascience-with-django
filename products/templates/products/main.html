@@ -1,20 +1,38 @@
 {% extends 'base.html' %}
 {% block title %} Performance {% endblock title %}
 {% block content %}
-{{ df | safe }}
+<div class="ui modal mymodal">
+    <div class="header"><h2>Price data</h2></div>
+    <div class="ui container">
+        <ui>
+            <li><strong>Count: </strong>{{ price.count }}</li>
+            <li><strong>Mean: </strong>{{ price.mean | floatformat }}</li>
+            <li><strong>Median: </strong>{{ price.median }}</li>
+            <li><strong>Min: </strong>{{ price.min }}</li>
+            <li><strong>Max: </strong>{{ price.max }}</li>
+            <li><strong>Std dev: </strong>{{ price.std | floatformat }}</li>
+        </ui>
+    </div>
+</div>
 
 <div>
+    <div class="block-center">
 
-    {% if error_message %}
-        {{ error_message }}
-    {% endif %}
-
-    {% if request.POST %}
-        {% if graph %}
-            <img src="data:image/png;base64, {{ graph | safe }}">
+        {% if error_message %}
+        <div class="ui negative message">
+            <i class="close icon"></i>
+            <div class="header">
+                {{ error_message }}
+            </div>
+        </div>
         {% endif %}
-    {% endif %}
 
+        {% if request.POST %}
+        {% if graph %}
+        <img align="center" height="350px" src="data:image/png;base64, {{ graph | safe }}" width="700px">
+        {% endif %}
+        {% endif %}
+    </div>
     <form action="" class="ui form" method="POST">
         {% csrf_token %}
         <div class="field">
@@ -37,8 +55,25 @@
                 </div>
             </div>
         </div>
-        <button class="ui primary button" type="submit">Select</button>
+        <div class="block-center">
+            <button class="ui primary button" type="submit">Select</button>
+        </div>
+        <br><br>
     </form>
+    <div class="block-center">
+        <button class="ui secondary button" id="modal-btn">See summary</button>
+        <br><br>
+        <a href="{% url 'products:add-purchase-view' %}">
+            <button class="ui positive button">Add Record</button>
+        </a>
+        <br><br>
+    </div>
 </div>
+{{ df | safe }}<br><br>
+
+{{ price.mean }} <br>
+{{ price.std | floatformat }} <br>
+{{ price.median }} <br><br>
+
 <h3 align="right"> Created by, Tanmay H Patel </h3>
 {% endblock content %}
