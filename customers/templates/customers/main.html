@@ -3,6 +3,8 @@
 {% block content %}
 <h1>Correlation: {{ corr }}</h1>
 {% if graph %}
-<img src="data:image/png; base64, {{ graph|safe }}" width="500px" height="400px" align="center">
+<div class="block-center">
+    <img align="center" height="400px" src="data:image/png; base64, {{ graph|safe }}" width="auto">
+</div>
 {% endif %}
 {% endblock content %}

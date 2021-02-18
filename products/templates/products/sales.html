@@ -2,6 +2,8 @@
 {% block title %} Sales {% endblock title %}
 {% block content %}
 {% if graph %}
-        <img align="center" height="350px" src="data:image/png;base64, {{ graph | safe }}" width="700px">
+<div class="block-center">
+    <img align="center" height="400px" src="data:image/png;base64, {{ graph | safe }}" width="auto">
+</div>
 {% endif %}
 {% endblock content %}
