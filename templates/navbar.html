@@ -1,10 +1,12 @@
+{% url 'home' as path_to_home %}
 {% url 'products:main-products-view' as path_to_performance %}
 {% url 'products:add-purchase-view' as path_to_adding_records %}
 {% url 'csvs:upload-view' as path_to_upload %}
 {% url 'customers:main-customer-view' as path_to_customers %}
+{% url 'products:sales-view' as path_to_sales_view %}
 
 <div class="ui secondary pointing menu">
-    <a class="active item">
+    <a class="{% if request.path == path_to_home %}active{% endif %}item" href="{{ path_to_home }}">
         Home
     </a>
     <a class="{% if request.path == path_to_performance %}active{% endif %}item" href="{{ path_to_performance }}">
@@ -12,6 +14,9 @@
     </a>
     <a class="{% if request.path == path_to_adding_records %}active{% endif %}item" href="{{ path_to_adding_records }}">
         Add records
+    </a>
+    <a class="{% if request.path == path_to_sales_view %}active{% endif %}item" href="{{ path_to_sales_view }}">
+        Sales view
     </a>
     <a class="{% if request.path == path_to_customers %}active{% endif %}item" href="{{ path_to_customers }}">
         Customers
